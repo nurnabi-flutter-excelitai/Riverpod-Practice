@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_test_project/global/global_data.dart';
 import 'package:riverpod_test_project/main.dart';
 
 class JokesPage extends ConsumerWidget {
@@ -10,7 +11,7 @@ class JokesPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context,WidgetRef ref) {
 
-    final jokeFuture = ref.watch(jokesFutureProvider);
+    final jokeFuture = ref.watch(GlobalData.jokesFutureProvider);
 
 
     return Scaffold(
@@ -19,8 +20,7 @@ class JokesPage extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(onPressed: ()=>
-               // ref.refresh(jokesFutureProvider),
-                ref.refresh(jokesFutureProvider),
+                ref.refresh(GlobalData.jokesFutureProvider),
                 child: const Text('Fetch joke')),
             SizedBox(height: 28,),
             jokeFuture.when(
